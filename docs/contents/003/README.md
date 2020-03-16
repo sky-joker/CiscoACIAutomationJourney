@@ -18,11 +18,11 @@ ACIの基礎イメージは上記のドキュメントを参照ください。
 
 イメージは以下のようになります。
 
-[![](img/tenant_image.gif)](img/tenant_image.gif)
+![](img/tenant_image.gif)
 
 完成系です。
 
-[![](img/tenant_image.png)](img/tenant_image.png)
+![](img/tenant_image.png)
 
 # Playbook
 
@@ -145,4 +145,4 @@ localhost                  : ok=6    changed=6    unreachable=0    failed=0    s
 
 結果確認例です。
 
-[![](img/automation_result.gif)](img/automation_result.gif)
+![](img/automation_result.gif)
