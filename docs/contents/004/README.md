@@ -76,7 +76,6 @@ EPGを繋ぎ合わすために必要なContractとFilterを自動で作成して
         ether_type: "{{ item.ether_type | default('unspecified') }}"
         arp_flag: "{{ item.arp_flag | default('unspecified') }}"
         ip_protocol: "{{ item.ip_protocol | default('unspecified') }}"
-        ip_protocol: "{{ item.ip_protocol | default('unspecified') }}"
         stateful: "{{ item.stateful | default(False) }}"
         dst_port: "{{ item.dst_port | default('unspecified') }}"
         state: present
