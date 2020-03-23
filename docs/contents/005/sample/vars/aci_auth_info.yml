@@ -1,0 +1,5 @@
+---
+aci_hostname: sandboxapicdc.cisco.com
+aci_username: admin
+aci_password: ciscopsdt
+validate_certs: no

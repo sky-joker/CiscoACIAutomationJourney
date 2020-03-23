@@ -1,0 +1,23 @@
+---
+- name: add contract subject
+  aci_contract_subject:
+    hostname: "{{ aci_hostname }}"
+    username: "{{ aci_username }}"
+    password: "{{ aci_password }}"
+    validate_certs: "{{ validate_certs }}"
+    tenant: "{{ outer_item.0.name }}"
+    contract: "{{ outer_item.1.name }}"
+    subject: "{{ item.1.name }}"
+    description: "{{ item.1.description | default('') }}"
+    state: present
+  with_subelements:
+    - "[{{ outer_item.1 }}]"
+    - subject
+
+- name: include add filter to contract subject tasks
+  include_tasks: ./add_filter_to_contract_subject_tasks.yml
+  with_subelements:
+    - "[{{ outer_item.1 }}]"
+    - subject
+  loop_control:
+    loop_var: outer2_item 

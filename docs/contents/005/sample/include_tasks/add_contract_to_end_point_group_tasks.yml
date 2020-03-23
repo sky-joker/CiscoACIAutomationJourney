@@ -1,0 +1,19 @@
+---
+- name: add contract to end point group
+  aci_epg_to_contract:
+    hostname: "{{ aci_hostname }}"
+    username: "{{ aci_username }}"
+    password: "{{ aci_password }}"
+    validate_certs: "{{ validate_certs }}"
+    tenant: "{{ outer_item.0.name }}"
+    ap: "{{ outer_item.1.name }}"
+    epg: "{{ outer_item2.1.name }}"
+    contract: "{{ item.1.contract }}"
+    contract_type: "{{ item.1.contract_type }}"
+    state: present
+  with_subelements:
+    - "[{{ outer_item2.1 }}]"
+    - contracts
+  when:
+    - item.1.contract is defined
+    - item.1.contract_type is defined
