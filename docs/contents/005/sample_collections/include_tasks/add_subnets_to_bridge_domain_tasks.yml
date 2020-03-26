@@ -1,0 +1,16 @@
+---
+- name: add subnets to bridge domain
+  cisco.aci.aci_bd_subnet:
+    hostname: "{{ aci_hostname }}"
+    username: "{{ aci_username }}"
+    password: "{{ aci_password }}"
+    validate_certs: "{{ validate_certs }}"
+    tenant: "{{ outer_item.0.name }}"
+    bd: "{{ outer_item.1.name }}"
+    subnet_name: "{{ item.1.name }}"
+    description: "{{ item.1.description | default('') }}"
+    gateway: "{{ item.1.gateway }}"
+    mask: "{{ item.1.mask }}"
+  with_subelements:
+    - "[{{ outer_item.1 }}]"
+    - subnets

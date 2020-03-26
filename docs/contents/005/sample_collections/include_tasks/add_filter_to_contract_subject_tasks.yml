@@ -1,0 +1,15 @@
+---
+- name: add filter to contract subject
+  cisco.aci.aci_contract_subject_to_filter:
+    hostname: "{{ aci_hostname }}"
+    username: "{{ aci_username }}"
+    password: "{{ aci_password }}"
+    validate_certs: "{{ validate_certs }}"
+    tenant: "{{ outer_item.0.name }}"
+    contract: "{{ outer_item.1.name }}"
+    subject: "{{ outer2_item.1.name }}"
+    filter: "{{ item.1.name }}"
+    state: present
+  with_subelements:
+    - "[{{ outer2_item.1 }}]"
+    - filters

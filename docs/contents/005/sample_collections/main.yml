@@ -1,0 +1,122 @@
+---
+- name: ansible aci module test
+  hosts: localhost
+  gather_facts: no
+  vars_files:
+    - vars/aci_auth_info.yml
+    - vars/aci_parameters.yml
+  tasks:
+    - name: create tenant
+      cisco.aci.aci_tenant:
+        hostname: "{{ aci_hostname }}"
+        username: "{{ aci_username }}"
+        password: "{{ aci_password }}"
+        validate_certs: "{{ validate_certs }}"
+        tenant: "{{ item.name }}"
+        description: "{{ item.description | default('') }}"
+        state: present
+      loop: "{{ tenants }}"
+
+    - name: create VRF for tenant
+      cisco.aci.aci_vrf:
+        hostname: "{{ aci_hostname }}"
+        username: "{{ aci_username }}"
+        password: "{{ aci_password }}"
+        validate_certs: "{{ validate_certs }}"
+        tenant: "{{ item.0.name }}"
+        vrf: "{{ item.1.name }}"
+        description: "{{ item.1.description | default('') }}"
+        state: present
+      with_subelements:
+        - "{{ tenants }}"
+        - tenant_vrf
+
+    - name: create bridge domain
+      cisco.aci.aci_bd:
+        hostname: "{{ aci_hostname }}"
+        username: "{{ aci_username }}"
+        password: "{{ aci_password }}"
+        validate_certs: "{{ validate_certs }}"
+        tenant: "{{ item.0.name }}"
+        vrf: "{{ item.1.vrf }}"
+        bd: "{{ item.1.name }}"
+        description: "{{ item.1.description | default('') }}"
+        bd_type: "{{ item.1.bd_type }}"
+        state: present
+      with_subelements:
+        - "{{ tenants }}"
+        - bridge_domain
+
+    - name: include add subnets to bridge domain tasks
+      include_tasks: ./include_tasks/add_subnets_to_bridge_domain_tasks.yml
+      with_subelements:
+        - "{{ tenants }}"
+        - bridge_domain
+      loop_control:
+        loop_var: outer_item
+
+    - name: create filter
+      cisco.aci.aci_filter:
+        hostname: "{{ aci_hostname }}"
+        username: "{{ aci_username }}"
+        password: "{{ aci_password }}"
+        validate_certs: "{{ validate_certs }}"
+        tenant: "{{ item.0.name }}"
+        filter: "{{ item.1.name }}"
+        description: "{{ item.1.description | default('') }}"
+        state: present
+      with_subelements:
+        - "{{ tenants }}"
+        - filters
+
+    - name: include add filter entry tasks
+      include_tasks: ./include_tasks/add_filter_entry_tasks.yml
+      with_subelements:
+        - "{{ tenants }}"
+        - filters
+      loop_control:
+        loop_var: outer_item 
+
+    - name: create a contract
+      cisco.aci.aci_contract:
+        hostname: "{{ aci_hostname }}"
+        username: "{{ aci_username }}"
+        password: "{{ aci_password }}"
+        validate_certs: "{{ validate_certs }}"
+        tenant: "{{ item.0.name }}"
+        contract: "{{ item.1.name  }}"
+        description: "{{ item.1.description | default('') }}"
+        state: present
+      with_subelements:
+        - "{{ tenants }}"
+        - contracts
+
+    - name: include create contract subject tasks
+      include_tasks: ./include_tasks/create_contract_subject_tasks.yml
+      with_subelements:
+        - "{{ tenants }}"
+        - contracts
+      loop_control:
+        loop_var: outer_item 
+
+    - name: create application profile
+      cisco.aci.aci_ap:
+        hostname: "{{ aci_hostname }}"
+        username: "{{ aci_username }}"
+        password: "{{ aci_password }}"
+        validate_certs: "{{ validate_certs }}"
+        tenant: "{{ item.0.name }}"
+        ap: "{{ item.1.name }}"
+        description: "{{ item.1.description | default('') }}"
+        state: present
+      with_subelements:
+        - "{{ tenants }}"
+        - application_profile
+
+    - name: include create end point group tasks
+      include_tasks: ./include_tasks/create_end_point_group_tasks.yml
+      with_subelements:
+        - "{{ tenants }}"
+        - application_profile
+      loop_control:
+        loop_var: outer_item 

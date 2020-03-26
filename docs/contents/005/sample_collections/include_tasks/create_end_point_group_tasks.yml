@@ -1,0 +1,24 @@
+---
+- name: create end point group
+  cisco.aci.aci_epg:
+    hostname: "{{ aci_hostname }}"
+    username: "{{ aci_username }}"
+    password: "{{ aci_password }}"
+    validate_certs: "{{ validate_certs }}"
+    tenant: "{{ outer_item.0.name }}"
+    ap: "{{ outer_item.1.name }}"
+    bd: "{{ item.1.bd }}"
+    epg: "{{ item.1.name }}"
+    description: "{{ item.1.description | default('') }}"
+    state: present
+  with_subelements:
+    - "[{{ outer_item.1 }}]"
+    - endpoint_group
+
+- name: include add contract to end point group tasks
+  include_tasks: ./add_contract_to_end_point_group_tasks.yml
+  with_subelements:
+    - "[{{ outer_item.1 }}]"
+    - endpoint_group
+  loop_control:
+    loop_var: outer_item2

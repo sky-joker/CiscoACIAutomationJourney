@@ -1,0 +1,19 @@
+---
+- name: "add filter entry"
+  cisco.aci.aci_filter_entry:
+    hostname: "{{ aci_hostname }}"
+    username: "{{ aci_username }}"
+    password: "{{ aci_password }}"
+    validate_certs: "{{ validate_certs }}"
+    tenant: "{{ outer_item.0.name }}"
+    filter: "{{ outer_item.1.name }}"
+    entry: "{{ item.1.entry }}"
+    ether_type: "{{ item.1.ether_type | default('unspecified') }}"
+    arp_flag: "{{ item.1.arp_flag | default('unspecified') }}"
+    ip_protocol: "{{ item.1.ip_protocol | default('unspecified') }}"
+    stateful: "{{ item.1.stateful | default(False) }}"
+    dst_port: "{{ item.1.dst_port | default('unspecified') }}"
+    state: present
+  with_subelements:
+    - "[{{ outer_item.1 }}]"
+    - filter_entry

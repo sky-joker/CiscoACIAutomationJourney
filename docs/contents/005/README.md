@@ -14,6 +14,16 @@ Playbookのサンプルは以下に保存されています。
 
 [https://github.com/sky-joker/CiscoACIAutomationJourneyWithAnsible/tree/master/docs/contents/005/sample](https://github.com/sky-joker/CiscoACIAutomationJourneyWithAnsible/tree/master/docs/contents/005/sample)
 
+**コレクションズサンプル**
+
+[https://github.com/sky-joker/CiscoACIAutomationJourneyWithAnsible/tree/master/docs/contents/005/sample_collections](https://github.com/sky-joker/CiscoACIAutomationJourneyWithAnsible/tree/master/docs/contents/005/sample_collections)
+
+コレクションズで試す場合は [Red Hat Automation Hub(Galaxy)](https://cloud.redhat.com/ansible/automation-hub/cisco/aci) からインストールする必要があります。
+
+```bash
+% ansible-galaxy collection install cisco.aci
+```
+
 サンプルをそのまま実行するとDevNetのALWAYS-ONの方に自動でテナントが構築されます。  
 ちなみに、サンプルのPlaybookはロール化しておらず一先ず動作確認をしたかっただけなので単純にタスク毎でファイルを分けています。  
 各タスクファイルは以下のとおりです。

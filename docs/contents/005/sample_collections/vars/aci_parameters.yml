@@ -1,0 +1,69 @@
+---
+tenants:
+  - name: TenantA
+    description: TenantA
+    tenant_vrf:
+      - name: TenantA_VRF01
+        description: TenantA VRF01
+    bridge_domain:
+      - name: brdige01
+        description: brdige01
+        bd_type: ethernet
+        vrf: TenantA_VRF01
+        subnets:
+          - name: serviceA
+            description: serviceA network
+            gateway: 192.168.0.1
+            mask: 24
+      - name: brdige02
+        description: brdige02
+        bd_type: ethernet
+        vrf: TenantA_VRF01
+        subnets:
+          - name: serviceB
+            description: serviceB network
+            gateway: 192.168.1.1
+            mask: 24
+    application_profile:
+      - name: TenantA_AP01
+        description: TenantA AP01
+        endpoint_group:
+          - name: epg01
+            description: epg01
+            bd: bridge01
+            contracts:
+              - contract: web_contract
+                contract_type: provider
+          - name: epg02
+            description: epg02
+            bd: bridge02
+            contracts:
+              - contract: web_contract
+                contract_type: consumer
+    contracts:
+      - name: web_contract
+        description: web contract
+        subject:
+          - name: subjectA
+            description: subject A
+            filters:
+              - name: web_filter
+    filters:
+      - name: web_filter
+        description: web filter
+        filter_entry:
+          - entry: http
+            ether_type: ip
+            arp_flag: unspecified
+            ip_protocol: tcp
+            stateful: True
+            dst_port: 80
+          - entry: https
+            ether_type: ip
+            arp_flag: unspecified
+            ip_protocol: tcp
+            stateful: True
+            dst_port: 443
+
+
+# pip install jmespath <- json_query
