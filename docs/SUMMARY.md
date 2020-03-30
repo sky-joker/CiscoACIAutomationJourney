@@ -7,6 +7,8 @@
     * [ACI Introductionの自動化する](contents/003/README.md)
     * [ACIのContractとFilterを作成する](contents/004/README.md)
     * [ACIの基本テナント構成を自動で作る](contents/005/README.md)
+* [ACI自動化(REST API)](contents/api/README.md)
+    * [ACI REST API基礎](contents/api/001/README.md)
 * [メモ](memo/README.md)
 * [リンク集](link/README.md)
     * [動画関連](link/001/README.md)
