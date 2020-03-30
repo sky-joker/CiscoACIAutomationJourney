@@ -9,7 +9,7 @@
 
 # APIリファレンス
 
-[https://developer.cisco.com/site/apic-mim-ref-api/?version=4.2(1)](https://developer.cisco.com/site/apic-mim-ref-api/?version=4.2(1))
+[https://developer.cisco.com/site/apic-mim-ref-api/](https://developer.cisco.com/site/apic-mim-ref-api/)
 
 上記ページはフレーム分割されていますが、フレームの高さの変更に限界があるため対象のClassを見たい時は右クリックして新しいタブで開くことをお勧めします。
 
