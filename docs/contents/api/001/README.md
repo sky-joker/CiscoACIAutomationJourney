@@ -1,5 +1,3 @@
-# ACI REST API基礎
-
 # 初めに読んで理解すると良いドキュメント
 
 * [Cisco APIC REST API ユーザ ガイド](https://www.cisco.com/c/ja_jp/td/docs/csm/policyautomationcntrllers/apppolicyinfracntrller-ap/pug/001/b_APIC_RESTful_API_User_Guide/b_APIC_RESTful_API_User_Guide_preface_00.html)
