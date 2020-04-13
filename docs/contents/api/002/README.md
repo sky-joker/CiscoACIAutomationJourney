@@ -76,7 +76,10 @@ response: {"totalCount":"1","imdata":[{"topInfo":{"attributes":{"childAction":""
           {
             "vzBrCP": {
               "attributes": {
+                "dn": "uni/tn-TenantA/brc-test",
                 "name": "test",
+                "rn": "brc-test",
+                "status": "created"
               },
               "children": [
                 
@@ -93,7 +96,9 @@ vz:BrCPの仕様は以下のとおりです。
 
 [https://pubhub.devnetcloud.com/media/apic-mim-ref-421/docs/MO-vzBrCP.html](https://pubhub.devnetcloud.com/media/apic-mim-ref-421/docs/MO-vzBrCP.html)
 
-ドキュメントにあるvz:BrCPのプロパティとpayloadを確認するといくつか差分が確認できます。  
-payloadにあるキーでプロパティで使用できるのは `name` のみなので、nameのみ指定しています。
+`status` は `created/modified/deleted` が指定できます。  
+以下を参考にしてみてください。
+
+[https://pubhub.devnetcloud.com/media/apic-mim-ref-421/docs/MO-vzBrCP.html#status](https://pubhub.devnetcloud.com/media/apic-mim-ref-421/docs/MO-vzBrCP.html#status)
 
 このようにすれば、簡単にAPI仕様の把握と実装が可能です。
