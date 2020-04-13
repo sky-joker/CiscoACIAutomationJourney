@@ -94,7 +94,7 @@ response: {"totalCount":"1","imdata":[{"topInfo":{"attributes":{"childAction":""
 classは `vz:BrCP(vzBrCP)` です。ドキュメントで仕様を確認する時はコロンで区切られています。  
 vz:BrCPの仕様は以下のとおりです。
 
-[https://pubhub.devnetcloud.com/media/apic-mim-ref-421/docs/MO-vzBrCP.html](https://pubhub.devnetcloud.com/media/apic-mim-ref-421/docs/MO-vzBrCP.htm)
+[https://pubhub.devnetcloud.com/media/apic-mim-ref-421/docs/MO-vzBrCP.html](https://pubhub.devnetcloud.com/media/apic-mim-ref-421/docs/MO-vzBrCP.html)
 
 このようにすれば、簡単にAPI仕様の把握と実装が可能です。
 
