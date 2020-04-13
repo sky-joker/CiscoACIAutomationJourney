@@ -1,6 +1,6 @@
 Cisco ACIには、Web UIで操作した内容をWebのリクエストとして確認できる `Show API Inspector` というツールが備わっています。  
 これを使う事で、具体的にどういったリクエストがAPIでやりとりされているか確認できます。  
-APIリファレンスを観てもよく分からない時は、実際に動いている内容を確認するのが手っ取り早いです。
+APIリファレンスを見てもよく分からない時は、実際に動いている内容を確認するのが手っ取り早いです。
 
 # Show API Inspectorの使い方
 
@@ -76,10 +76,7 @@ response: {"totalCount":"1","imdata":[{"topInfo":{"attributes":{"childAction":""
           {
             "vzBrCP": {
               "attributes": {
-                "dn": "uni/tn-TenantA/brc-test",
                 "name": "test",
-                "rn": "brc-test",
-                "status": "created"
               },
               "children": [
                 
@@ -96,7 +93,7 @@ vz:BrCPの仕様は以下のとおりです。
 
 [https://pubhub.devnetcloud.com/media/apic-mim-ref-421/docs/MO-vzBrCP.html](https://pubhub.devnetcloud.com/media/apic-mim-ref-421/docs/MO-vzBrCP.html)
 
+ドキュメントにあるvz:BrCPのプロパティとpayloadを確認するといくつか差分が確認できます。  
+payloadにあるキーでプロパティで使用できるのは `name` のみなので、nameのみ指定しています。
+
 このようにすれば、簡単にAPI仕様の把握と実装が可能です。
-
-
-
