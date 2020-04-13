@@ -9,6 +9,7 @@
     * [ACIの基本テナント構成を自動で作る](contents/005/README.md)
 * [ACI自動化(REST API)](contents/api/README.md)
     * [ACI REST API基礎](contents/api/001/README.md)
+    * [Show API Inspectorを使う](contents/api/002/README.md)
 * [メモ](memo/README.md)
 * [リンク集](link/README.md)
     * [動画関連](link/001/README.md)
